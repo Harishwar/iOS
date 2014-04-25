@@ -21,8 +21,7 @@
     NSArray *dirPaths;
     
     // Get the documents directory
-    dirPaths = NSSearchPathForDirectoriesInDomains(
-                                                   NSDocumentDirectory, NSUserDomainMask, YES);
+    dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     
     docsDir = dirPaths[0];
     
@@ -33,6 +32,7 @@
     
     NSFileManager *filemgr = [NSFileManager defaultManager];
     
+    //Create or Open SQLite DB
     if ([filemgr fileExistsAtPath: _databasePath ] == NO)
     {
         const char *dbpath = [_databasePath UTF8String];
@@ -61,6 +61,7 @@
     // Dispose of any resources that can be recreated.
 }
 
+//Save Details into SQLite
 - (IBAction)save:(id)sender {
     sqlite3_stmt    *statement;
     const char *dbpath = [_databasePath UTF8String];
@@ -76,8 +77,8 @@
         sqlite3_prepare_v2(_contactDB, insert_stmt,
                            -1, &statement, NULL);
         
+        //Get Time of Book Entry
         NSDate *gettime = [NSDate date];
-        
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         dateFormatter.dateFormat = @"dd-MM-yyyy hh:mm:ss";
         [dateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
@@ -98,6 +99,7 @@
     }
 }
 
+//Find matching records with BookName
 - (IBAction)find:(id)sender {
     const char *dbpath = [_databasePath UTF8String];
     sqlite3_stmt    *statement;
@@ -136,6 +138,7 @@
     }
 }
 
+//Clear All Fields
 - (IBAction)clear:(id)sender {
     _bookname.text=@"";
     _bookauthor.text=@"";
@@ -143,4 +146,5 @@
     _status.text=@"";
     _savedetails.text=@"";
 }
+
 @end
