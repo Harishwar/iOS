@@ -41,7 +41,7 @@
         {
             char *errMsg;
             const char *sql_stmt =
-            "CREATE TABLE IF NOT EXISTS BOOKS (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT, AUTHOR TEXT, DESC TEXT)";
+            "CREATE TABLE IF NOT EXISTS BOOKS (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT, AUTHOR TEXT, DESC TEXT, PUB TEXT, ISBN TEXT)";
             
             if (sqlite3_exec(_contactDB, sql_stmt, NULL, NULL, &errMsg) != SQLITE_OK)
             {
@@ -70,8 +70,8 @@
     {
         
         NSString *insertSQL = [NSString stringWithFormat:
-                               @"INSERT INTO BOOKS (name, author, desc) VALUES (\"%@\", \"%@\", \"%@\")",
-                               _bookname.text, _bookauthor.text, _bookdesc.text];
+                               @"INSERT INTO BOOKS (name, author, desc, pub, isbn) VALUES (\"%@\", \"%@\", \"%@\", \"%@\", \"%@\")",
+                               _bookname.text, _bookauthor.text, _bookdesc.text, _bookpub.text, _bookisbn.text];
         
         const char *insert_stmt = [insertSQL UTF8String];
         sqlite3_prepare_v2(_contactDB, insert_stmt,
@@ -90,6 +90,8 @@
             _bookname.text = @"";
             _bookauthor.text = @"";
             _bookdesc.text = @"";
+            _bookpub.text = @"";
+            _bookisbn.text = @"";
             _savedetails.text=[dateFormatter stringFromDate:gettime];
         } else {
             _status.text = @"Failed to add contact";
@@ -107,7 +109,7 @@
     if (sqlite3_open(dbpath, &_contactDB) == SQLITE_OK)
     {
         NSString *querySQL = [NSString stringWithFormat:
-                              @"SELECT author, desc FROM books WHERE name=\"%@\"",
+                              @"SELECT author, desc, pub, isbn FROM books WHERE name=\"%@\"",
                               _bookname.text];
         
         const char *query_stmt = [querySQL UTF8String];
@@ -119,18 +121,28 @@
             {
                 NSString *addressField = [[NSString alloc]
                                           initWithUTF8String:
-                                          (const char *) sqlite3_column_text(
-                                                                             statement, 0)];
+                                          (const char *) sqlite3_column_text(statement, 0)];
                 _bookauthor.text = addressField;
                 NSString *phoneField = [[NSString alloc]
                                         initWithUTF8String:(const char *)
                                         sqlite3_column_text(statement, 1)];
                 _bookdesc.text = phoneField;
+                NSString *pubField = [[NSString alloc]
+                                        initWithUTF8String:(const char *)
+                                        sqlite3_column_text(statement, 2)];
+                _bookpub.text = pubField;
+                NSString *isbnField = [[NSString alloc]
+                                        initWithUTF8String:(const char *)
+                                        sqlite3_column_text(statement, 3)];
+                _bookisbn.text = isbnField;
                 _status.text = @"Match found";
+                _savedetails.text=@"";
             } else {
                 _status.text = @"Match not found";
                 _bookauthor.text = @"";
                 _bookdesc.text = @"";
+                _bookisbn.text=@"";
+                _bookpub.text=@"";
             }
             sqlite3_finalize(statement);
         }
@@ -143,6 +155,8 @@
     _bookname.text=@"";
     _bookauthor.text=@"";
     _bookdesc.text=@"";
+    _bookisbn.text=@"";
+    _bookpub.text=@"";
     _status.text=@"";
     _savedetails.text=@"";
 }

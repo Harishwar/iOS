@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FC74C58B1928627000F14642 /* CoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FC74C5891928627000F14642 /* CoreDataModel.xcdatamodeld */; };
+		FC74C58E1928634A00F14642 /* TPLCoreDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC74C58D1928634A00F14642 /* TPLCoreDataViewController.m */; };
+		FC74C590192898D900F14642 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC74C58F192898D900F14642 /* CoreData.framework */; };
 		FCB57518190929CA004DE543 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCB57517190929CA004DE543 /* Foundation.framework */; };
 		FCB5751A190929CA004DE543 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCB57519190929CA004DE543 /* CoreGraphics.framework */; };
 		FCB5751C190929CA004DE543 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCB5751B190929CA004DE543 /* UIKit.framework */; };
@@ -35,6 +38,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FC74C58A1928627000F14642 /* CoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataModel.xcdatamodel; sourceTree = "<group>"; };
+		FC74C58C1928634A00F14642 /* TPLCoreDataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TPLCoreDataViewController.h; sourceTree = "<group>"; };
+		FC74C58D1928634A00F14642 /* TPLCoreDataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TPLCoreDataViewController.m; sourceTree = "<group>"; };
+		FC74C58F192898D900F14642 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		FCB57514190929CA004DE543 /* SQLite.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SQLite.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCB57517190929CA004DE543 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		FCB57519190929CA004DE543 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -62,6 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC74C590192898D900F14642 /* CoreData.framework in Frameworks */,
 				FCB5754D19093076004DE543 /* libsqlite3.dylib in Frameworks */,
 				FCB5751A190929CA004DE543 /* CoreGraphics.framework in Frameworks */,
 				FCB5751C190929CA004DE543 /* UIKit.framework in Frameworks */,
@@ -104,6 +112,7 @@
 		FCB57516190929CA004DE543 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FC74C58F192898D900F14642 /* CoreData.framework */,
 				FCB5754C19093076004DE543 /* libsqlite3.dylib */,
 				FCB57517190929CA004DE543 /* Foundation.framework */,
 				FCB57519190929CA004DE543 /* CoreGraphics.framework */,
@@ -123,6 +132,9 @@
 				FCB5752D190929CA004DE543 /* TPLViewController.m */,
 				FCB5752F190929CA004DE543 /* Images.xcassets */,
 				FCB5751E190929CA004DE543 /* Supporting Files */,
+				FC74C5891928627000F14642 /* CoreDataModel.xcdatamodeld */,
+				FC74C58C1928634A00F14642 /* TPLCoreDataViewController.h */,
+				FC74C58D1928634A00F14642 /* TPLCoreDataViewController.m */,
 			);
 			path = SQLite;
 			sourceTree = "<group>";
@@ -254,8 +266,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC74C58E1928634A00F14642 /* TPLCoreDataViewController.m in Sources */,
 				FCB57524190929CA004DE543 /* main.m in Sources */,
 				FCB57528190929CA004DE543 /* TPLAppDelegate.m in Sources */,
+				FC74C58B1928627000F14642 /* CoreDataModel.xcdatamodeld in Sources */,
 				FCB5752E190929CA004DE543 /* TPLViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -461,6 +475,7 @@
 				FCB57548190929CA004DE543 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FCB57549190929CA004DE543 /* Build configuration list for PBXNativeTarget "SQLiteTests" */ = {
 			isa = XCConfigurationList;
@@ -469,8 +484,22 @@
 				FCB5754B190929CA004DE543 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		FC74C5891928627000F14642 /* CoreDataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				FC74C58A1928627000F14642 /* CoreDataModel.xcdatamodel */,
+			);
+			currentVersion = FC74C58A1928627000F14642 /* CoreDataModel.xcdatamodel */;
+			path = CoreDataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = FCB5750C190929CA004DE543 /* Project object */;
 }
